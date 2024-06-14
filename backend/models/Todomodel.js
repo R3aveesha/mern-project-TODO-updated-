@@ -5,7 +5,6 @@ const todoSchema =mongoose.Schema({
     Title:{
         type:String,
         required:true,
-
     }
 })
 
