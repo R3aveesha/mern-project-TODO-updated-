@@ -20,11 +20,12 @@ function Home() {
       .catch((error) => {
         console.log(error);
         setLoading(false);
-      });
+      }); 
   }, []);
 
   return (
-    <div style={{ padding: '16px' }}>
+    <div style={{backgroundColor:'#38D6C0'}}>
+    <div style={{ padding: '16px'}}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ fontSize: '24px', margin: '32px 0' }}>Book List</h1>
         <Link to='/List/create'>
@@ -46,11 +47,11 @@ function Home() {
           <tbody>
             {todos.map((todo, index) => (
               <tr key={todo._id}>
-                <td style={{ border: '1px solid black', padding: '8px' }}>{index + 1}</td>
-                <td style={{ border: '1px solid black', padding: '8px' }}>{todo.Title}</td>
-                <td style={{ border: '1px solid black', padding: '8px', display: 'flex', gap: '8px' }}>
+                <td style={{ border: '2px solid black', padding: '8px' }}>{index + 1}</td>
+                <td style={{ border: '2px solid black', padding: '8px' }}>{todo.Title}</td>
+                <td style={{ border: '2px solid black', padding: '8px', display: 'flex', gap: '8px' }}>
                   <Link to={`/List/details/${todo._id}`}>
-                    <BsInfoCircle style={{ color: '#1e3a8a', fontSize: '24px' }} />
+                    <BsInfoCircle style={{ color: '#1e3a8a', fontSize: '24px'}} />
                   </Link>
                   <Link to={`/List/edit/${todo._id}`}>
                     <AiOutlineEdit style={{ color: '#059669', fontSize: '24px' }} />
@@ -59,7 +60,7 @@ function Home() {
                     onClick={() => handleDelete(todo._id)}
                     style={{ border: 'none', background: 'none', cursor: 'pointer' }}
                   >
-                    <MdOutlineDelete style={{ color: '#dc2626', fontSize: '24px' }} />
+                    <MdOutlineDelete style={{ color: '#dc2626', fontSize: '24px',alignItems:'' }} />
                   </button>
                 </td>
               </tr>
@@ -67,6 +68,7 @@ function Home() {
           </tbody>
         </table>
       )}
+    </div>
     </div>
   );
 }

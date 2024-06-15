@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import backbutton from '../src/components/backbutton';
 
 const ShowTodo=()=>{
 
@@ -22,8 +21,7 @@ const ShowTodo=()=>{
             console.log(error);
             setLoading(false);
         })
-
-      },[])
+      },[id])
   
 
   return (
@@ -36,6 +34,7 @@ const ShowTodo=()=>{
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
               <div className='my-4'>
                   <span className='text-xl mr-4 text-gray-500'>Id</span>
+                  
               </div>
             </div>
 
