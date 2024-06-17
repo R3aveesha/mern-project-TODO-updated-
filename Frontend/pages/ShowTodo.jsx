@@ -21,7 +21,7 @@ const ShowTodo=()=>{
             console.log(error);
             setLoading(false);
         })
-      },[id])
+      },[])
   
 
   return (
@@ -33,8 +33,8 @@ const ShowTodo=()=>{
           ):(
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
               <div className='my-4'>
-                  <span className='text-xl mr-4 text-gray-500'>Id</span>
-                  
+                  <span className='text-xl mr-4 text-gray-500'>Id</span><br></br>
+                  <span>{todo.Title}</span>   
               </div>
             </div>
 
@@ -42,5 +42,4 @@ const ShowTodo=()=>{
     </div>
   )
 }
-
-export default ShowTodo
+export default ShowTodo;
