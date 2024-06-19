@@ -8,18 +8,16 @@ const CreateTodo = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents the default form submission
+    e.preventDefault();
 
-    const data = {
-      Title: title
-    };
+    const data = { Title: title };
 
     setLoading(true);
 
     try {
       await axios.post('http://localhost:5556/List', data);
       setLoading(false);
-      navigate('/'); // Navigate to home or another route after successful post
+      navigate('/List'); // Navigate to home or another route after successful post
     } catch (error) {
       setLoading(false);
       console.error('There was an error creating the todo!', error);
@@ -27,11 +25,11 @@ const CreateTodo = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl my-4">Create Book</h1>
+    <div style={styles.container}>
+      <h1 style={styles.header}>Create Todo</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+        <div style={styles.formGroup}>
+          <label htmlFor="title" style={styles.label}>
             Title
           </label>
           <input
@@ -40,12 +38,12 @@ const CreateTodo = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            style={styles.input}
           />
         </div>
         <button
           type="submit"
-          className={`mt-4 px-4 py-2 bg-blue-500 text-white rounded-md ${loading ? 'opacity-50' : ''}`}
+          style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
           disabled={loading}
         >
           {loading ? 'Creating...' : 'Create'}
@@ -53,6 +51,49 @@ const CreateTodo = () => {
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    maxWidth: '600px',
+    margin: '0 auto',
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+  },
+  header: {
+    fontSize: '24px',
+    marginBottom: '20px',
+  },
+  formGroup: {
+    marginBottom: '15px',
+  },
+  label: {
+    display: 'block',
+    fontSize: '14px',
+    marginBottom: '5px',
+  },
+  input: {
+    width: '100%',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    fontSize: '14px',
+  },
+  button: {
+    display: 'inline-block',
+    padding: '10px 20px',
+    color: '#fff',
+    backgroundColor: '#007bff',
+    border: 'none',
+    borderRadius: '4px',
+    fontSize: '14px',
+    cursor: 'pointer',
+    textAlign: 'center',
+  },
+  buttonDisabled: {
+    opacity: 0.6,
+    cursor: 'not-allowed',
+  },
 };
 
 export default CreateTodo;
