@@ -9,7 +9,7 @@ const CreateTodo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+ 
     const data = { Title: title };
 
     setLoading(true);
