@@ -15,7 +15,7 @@ const ShowTodo=()=>{
         .get(`http://localhost:5556/List/${id}`)
         .then((response)=>{
           Settodo(response.data);
-          setLoading(false)
+          setLoading(false);
         })
         .catch((error)=>{
             console.log(error);
