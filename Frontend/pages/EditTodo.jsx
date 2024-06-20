@@ -6,18 +6,21 @@ const EditTodo = () => {
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {id}=useParams();
+  const { id } = useParams();
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true);
     axios
-    .get(`http://localhost:5556/List/${id}`)
-    .then((response)=>{
-      setTitle(response.data)
-      setLoading(false);
-      alert('an error happend, please checj the console')
-    })
-  },[])
+      .get(`http://localhost:5556/List/${id}`)
+      .then((response) => {
+        setTitle(response.data.Title);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching the todo item', error);
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,41 +30,44 @@ const EditTodo = () => {
     setLoading(true);
 
     try {
-      await axios.put('http://localhost:5556/List', data);
+      await axios.put(`http://localhost:5556/List/${id}`, data);
       setLoading(false);
-      navigate('/List'); // Navigate to home or another route after successful post
+      navigate('/List');
     } catch (error) {
-      setLoading(false)
-      console.error('There was an error creating the todo!', error);
+      console.error('There was an error updating the todo!', error);
+      setLoading(false);
     }
   };
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.header}>Create Todo</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={styles.formGroup}>
-          <label htmlFor="title" style={styles.label}>
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            style={styles.input}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
-          disabled={loading}
-          onClick={handleSubmit}
-        >
-          {loading ? 'Creating...' : 'Create'}
-        </button>
-      </form>
+      <h1 style={styles.header}>Edit Todo</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div style={styles.formGroup}>
+            <label htmlFor="title" style={styles.label}>
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <button
+            type="submit"
+            style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
+            disabled={loading}
+          >
+            {loading ? 'Updating...' : 'Update'}
+          </button>
+        </form>
+      )}
     </div>
   );
 };

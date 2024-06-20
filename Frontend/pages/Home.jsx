@@ -56,12 +56,9 @@ function Home() {
                   <Link to={`/List/edit/${todo._id}`}>
                     <AiOutlineEdit style={{ color: '#059669', fontSize: '24px' }} />
                   </Link>
-                  <button
-                    onClick={() => handleDelete(todo._id)}
-                    style={{ border: 'none', background: 'none', cursor: 'pointer' }}
-                  >
+                  <Link to={`/List/delete/${todo._id}`}>
                     <MdOutlineDelete style={{ color: '#dc2626', fontSize: '24px',alignItems:'' }} />
-                  </button>
+                    </Link>
                 </td>
               </tr>
             ))}
