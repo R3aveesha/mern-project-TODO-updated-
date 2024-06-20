@@ -29,11 +29,13 @@ const ShowTodo=()=>{
         <backbutton></backbutton>
         <h1 className='text-3xl my-4'></h1>
           {loading ?(
-            <p>loading....</p>
+            <p>loading...</p>
           ):(
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
               <div className='my-4'>
                   <span className='text-xl mr-4 text-gray-500'>Id</span><br></br>
+                  <span>{todo._id}</span>
+                  <span className='text-xl mr-4 text-gray-500'>Title</span><br></br>
                   <span>{todo.Title}</span>   
               </div>
             </div>

@@ -10,9 +10,10 @@ const EditTodo = () => {
 
   useEffect(()=>{
     setLoading(true);
-    axios.get(`http://localhost:5556/List/${id}`)
+    axios
+    .get(`http://localhost:5556/List/${id}`)
     .then((response)=>{
-      setTitle(response.data.Title)
+      setTitle(response.data)
       setLoading(false);
       alert('an error happend, please checj the console')
     })
