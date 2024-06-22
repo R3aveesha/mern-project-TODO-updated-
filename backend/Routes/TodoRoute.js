@@ -14,7 +14,8 @@ router.post('/',async(request,response)=>{
             })
         }
         const newTodo={
-            Title:request.body.Title
+            Title:request.body.Title,
+            SpecialNote:request.body.SpecialNote
         }
         const todo=await Todo.create(newTodo);
 

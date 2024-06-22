@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import todoimg from '../src/components/todoimg.jpg'
 
 function Home() {
   const [todos, setTodo] = useState([]);
@@ -24,10 +25,11 @@ function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#38D6C0', minHeight: '100vh', padding: '16px' }}>
+    
+    <div style={{ backgroundColor: '#38D6C0', minHeight: '100vh', padding: '16px',backgroundImage:`url(${todoimg})`}}>
       <div style={{ padding: '16px', maxWidth: '800px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1 style={{ fontSize: '24px', margin: '32px 0', color: '#0369a1' }}>Book List</h1>
+          <h1 style={{ fontSize: '24px', margin: '32px 0', color:'#01110F',fontStyle:'bold',}}><u>Book List</u></h1>
           <Link to='/List/create'>
             <MdOutlineAddBox style={{ color: '#0369a1', fontSize: '32px', cursor: 'pointer' }} />
           </Link>
@@ -67,6 +69,7 @@ function Home() {
         )}
       </div>
     </div>
+    
   );
 }
 

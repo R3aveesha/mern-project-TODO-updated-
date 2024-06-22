@@ -37,6 +37,10 @@ const ShowTodo = () => {
             <span style={styles.label}>Title: </span>
             <span style={styles.value}>{todo.Title}</span>
           </div>
+          <div style={styles.detailItem}>
+            <span style={styles.label}>Special Note: </span>
+            <span style={styles.value}>{todo.SpecialNote}</span>
+          </div>
         </div>
       )}
     </div>

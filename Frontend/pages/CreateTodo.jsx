@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateTodo = () => {
   const [title, setTitle] = useState('');
+  const [Note, setNote] = useState('');
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
  
-    const data = { Title: title };
+    const data = { Title: title,SpecialNote:Note };
 
     setLoading(true);
 
@@ -38,6 +40,16 @@ const CreateTodo = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            style={styles.input}
+          />
+           <label htmlFor="SpecialNote" style={styles.label}>
+            Special Note
+          </label>
+          <input
+            type="text"
+            id="Note"
+            value={Note}
+            onChange={(e) => setNote(e.target.value)}
             style={styles.input}
           />
         </div>

@@ -6,6 +6,9 @@ const todoSchema =mongoose.Schema({
         type:String,
         required:true,
     },
+    SpecialNote:{
+        type:String
+    },
     
 })
 
