@@ -53,10 +53,10 @@ function Home() {
                   <td style={{ border: '1px solid #ddd', padding: '8px' }}>{todo.Title}</td>
                   <td style={{ border: '1px solid #ddd', padding: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Link to={`/List/details/${todo._id}`} style={{ marginBottom: '8px' }}>
-                      <BsInfoCircle style={{ color: '#1e3a8a', fontSize: '24px', cursor: 'pointer' }} />
+                      <BsInfoCircle style={{ color: '#1e3a8a', fontSize: '24px' }} />
                     </Link>
                     <Link to={`/List/edit/${todo._id}`} style={{ marginBottom: '8px' }}>
-                      <AiOutlineEdit style={{ color: '#059669', fontSize: '24px', cursor: 'pointer' }} />
+                      <AiOutlineEdit style={{ color: '#059669', fontSize: '24px'}} />
                     </Link>
                     <Link to={`/List/delete/${todo._id}`}>
                       <MdOutlineDelete style={{ color: '#dc2626', fontSize: '24px', cursor: 'pointer' }} />

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import createimg from '../src/components/createimg.jpg';
 
 const CreateTodo = () => {
   const [title, setTitle] = useState('');
   const [Note, setNote] = useState('');
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
-    const data = { Title: title,SpecialNote:Note };
+    const data = { Title: title, SpecialNote: Note };
 
     setLoading(true);
 
@@ -27,50 +26,60 @@ const CreateTodo = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>Create Todo</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={styles.formGroup}>
-          <label htmlFor="title" style={styles.label}>
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            style={styles.input}
-          />
-           <label htmlFor="SpecialNote" style={styles.label}>
-            Special Note
-          </label>
-          <input
-            type="text"
-            id="Note"
-            value={Note}
-            onChange={(e) => setNote(e.target.value)}
-            style={styles.input}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
-          disabled={loading}
-        >
-          {loading ? 'Creating...' : 'Create'}
-        </button>
-      </form>
+    <div style={styles.background}>
+      <div style={styles.container}>
+        <h1 style={styles.header}>Create Todo</h1>
+        <form onSubmit={handleSubmit}>
+          <div style={styles.formGroup}>
+            <label htmlFor="title" style={styles.label}>Title</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              style={styles.input}
+            />
+            <label htmlFor="SpecialNote" style={styles.label}>Special Note</label>
+            <input
+              type="text"
+              id="Note"
+              value={Note}
+              onChange={(e) => setNote(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+          <button
+            type="submit"
+            style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
+            disabled={loading}
+          >
+            {loading ? 'Creating...' : 'Create'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
 const styles = {
+  background: {
+    backgroundImage: `url(${createimg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     maxWidth: '600px',
-    margin: '0 auto',
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
+    backgroundColor: 'rgba(229, 195, 140, 0.9)',
+    borderRadius: '8px',
   },
   header: {
     fontSize: '24px',
@@ -85,7 +94,7 @@ const styles = {
     marginBottom: '5px',
   },
   input: {
-    width: '100%',
+    width: '400px',
     padding: '10px',
     border: '1px solid #ccc',
     borderRadius: '4px',
