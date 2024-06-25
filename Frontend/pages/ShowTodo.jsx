@@ -23,7 +23,7 @@ const ShowTodo = () => {
 
   return (
     <div style={styles.container}>
-      <Link to="/" style={styles.backButton}>&larr; Back</Link>
+      <Link to="/List" style={styles.backButton}>&larr; Back</Link>
       <h1 style={styles.heading}>Todo Details</h1>
       {loading ? (
         <p style={styles.loadingText}>Loading...</p>
