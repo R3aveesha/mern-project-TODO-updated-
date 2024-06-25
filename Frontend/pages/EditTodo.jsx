@@ -92,6 +92,7 @@ const styles = {
 
   background:{
     backgroundImage:`url(${img5})`,
+    
   },
   container: {
     maxWidth: '600px',
