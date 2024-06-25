@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import img5 from '../src/components/img5.jpg'
 
 const EditTodo = () => {
   const [title, setTitle] = useState('');
@@ -43,6 +44,7 @@ const EditTodo = () => {
   };
 
   return (
+    <div style={styles.background}>
     <div style={styles.container}>
       <h1 style={styles.header}>Edit Todo</h1>
       {loading ? (
@@ -82,10 +84,15 @@ const EditTodo = () => {
         </form>
       )}
     </div>
+    </div>
   );
 };
 
 const styles = {
+
+  background:{
+    backgroundImage:`url(${img5})`,
+  },
   container: {
     maxWidth: '600px',
     margin: '0 auto',

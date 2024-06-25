@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import img4 from '../src/components/img4.jpg';
 
 const ShowTodo = () => {
   const [todo, setTodo] = useState({});
@@ -22,37 +23,63 @@ const ShowTodo = () => {
   }, [id]);
 
   return (
-    <div style={styles.container}>
-      <Link to="/List" style={styles.backButton}>&larr; Back</Link>
-      <h1 style={styles.heading}>Todo Details</h1>
-      {loading ? (
-        <p style={styles.loadingText}>Loading...</p>
-      ) : (
-        <div style={styles.todoContainer}>
-          <div style={styles.detailItem}>
-            <span style={styles.label}>Id: </span>
-            <span style={styles.value}>{todo._id}</span>
-          </div>
-          <div style={styles.detailItem}>
-            <span style={styles.label}>Title: </span>
-            <span style={styles.value}>{todo.Title}</span>
-          </div>
-          <div style={styles.detailItem}>
-            <span style={styles.label}>Special Note: </span>
-            <span style={styles.value}>{todo.SpecialNote}</span>
-          </div>
+    <div style={styles.background}>
+      <div style={styles.overlay}>
+        <div style={styles.container}>
+          <Link to="/List" style={styles.backButton}>&larr; Back</Link>
+          <h1 style={styles.heading}>Todo Details</h1>
+          {loading ? (
+            <p style={styles.loadingText}>Loading...</p>
+          ) : (
+            <div style={styles.todoContainer}>
+              <div style={styles.detailItem}>
+                <span style={styles.label}>Id: </span>
+                <span style={styles.value}>{todo._id}</span>
+              </div>
+              <div style={styles.detailItem}>
+                <span style={styles.label}>Title: </span>
+                <span style={styles.value}>{todo.Title}</span>
+              </div>
+              <div style={styles.detailItem}>
+                <span style={styles.label}>Special Note: </span>
+                <span style={styles.value}>{todo.SpecialNote}</span>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
 const styles = {
+  background: {
+    backgroundImage: `url(${img4})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Dark overlay to make text readable
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     padding: '1rem',
     maxWidth: '600px',
     margin: '0 auto',
     fontFamily: 'Arial, sans-serif',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Light background for the text area
+    borderRadius: '0.5rem',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
   },
   backButton: {
     display: 'inline-block',

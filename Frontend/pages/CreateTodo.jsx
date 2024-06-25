@@ -5,24 +5,42 @@ import createimg from '../src/components/createimg.jpg';
 
 const CreateTodo = () => {
   const [title, setTitle] = useState('');
-  const [Note, setNote] = useState('');
+  const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
+  const [titleError, setTitleError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { Title: title, SpecialNote: Note };
+    if (titleError) return; // Prevent submission if there's an error
+
+    const data = { Title: title, SpecialNote: note };
 
     setLoading(true);
 
     try {
       await axios.post('http://localhost:5556/List', data);
       setLoading(false);
-      navigate('/List'); // Navigate to home or another route after successful post
+      navigate('/List');
     } catch (error) {
       setLoading(false);
       console.error('There was an error creating the todo!', error);
     }
+  };
+
+  const validateTitle = (value) => {
+    const regex = /^[a-zA-Z0-9\s.,'-]*$/;
+    if (!regex.test(value)) {
+      setTitleError('Title contains invalid characters.');
+    } else {
+      setTitleError('');
+    }
+  };
+
+  const handleTitleChange = (e) => {
+    const { value } = e.target;
+    validateTitle(value);
+    setTitle(value);
   };
 
   return (
@@ -36,15 +54,16 @@ const CreateTodo = () => {
               type="text"
               id="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={handleTitleChange}
               required
               style={styles.input}
             />
-            <label htmlFor="SpecialNote" style={styles.label}>Special Note</label>
+            {titleError && <p style={styles.error}>{titleError}</p>}
+            <label htmlFor="note" style={styles.label}>Special Note</label>
             <input
               type="text"
-              id="Note"
-              value={Note}
+              id="note"
+              value={note}
               onChange={(e) => setNote(e.target.value)}
               style={styles.input}
             />
@@ -52,7 +71,7 @@ const CreateTodo = () => {
           <button
             type="submit"
             style={{ ...styles.button, ...(loading ? styles.buttonDisabled : {}) }}
-            disabled={loading}
+            disabled={loading || titleError}
           >
             {loading ? 'Creating...' : 'Create'}
           </button>
@@ -99,6 +118,10 @@ const styles = {
     border: '1px solid #ccc',
     borderRadius: '4px',
     fontSize: '14px',
+  },
+  error: {
+    color: 'red',
+    fontSize: '12px',
   },
   button: {
     display: 'inline-block',
