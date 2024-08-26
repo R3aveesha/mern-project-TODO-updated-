@@ -2,8 +2,6 @@ import express from 'express'
 const router = express.Router();
 import {Todo} from '../models/Todomodel.js'
 
-
-
 router.post('/',async(request,response)=>{
     try{
         if(
@@ -85,7 +83,7 @@ router.delete('/:id',async(request,response)=>{
             return response.status(404).json({message:'Title not found'})
         }
 
-        return response.status(200).send({message:'book deleted successfully'})
+        return response.status(200).send({message:'detail deleted successfully'})
 
     }
     catch(error){
